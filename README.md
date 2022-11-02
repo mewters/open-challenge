@@ -1,8 +1,31 @@
+# Mewters - Open Challenge
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Summary
+
+- [Mewters - Open Challenge](#mewters---open-challenge)
+  - [Summary](#summary)
+  - [Getting Started](#getting-started)
+  - [Development](#development)
+    - [Docker](#docker)
+    - [Files Creation](#files-creation)
+    - [Components Development](#components-development)
+  - [Tests](#tests)
+  - [Build](#build)
+  - [Development Tools](#development-tools)
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies with `npm` or `yarn`:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+Then run the development server:
 
 ```bash
 npm run dev
@@ -12,23 +35,132 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Development
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Docker
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+You can use Docker if you want.
 
-## Learn More
+First, build the image:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+    docker-compose build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Install the dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+    docker-compose run --rm dev yarn install
+```
 
-## Deploy on Vercel
+Then, start the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+    docker-compose up dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To start Storybook
+
+```bash
+    docker-compose up storybook
+```
+
+If you want to execute other NPM scripts, you can use this:
+
+```bash
+    docker-compose run --rm dev [script name]
+```
+
+Ex:
+
+```bash
+    docker-compose run --rm dev plop
+```
+
+### Files Creation
+
+To create new files, run the following command:
+
+```bash
+npm run plop
+# or
+yarn run plop
+```
+
+`Plop.js` will create the necessary files with the ready and standardized structures for you to start coding. DON'T create files manually!
+
+### Components Development
+
+`Storybook` is an open source tool for building UI components and pages in isolation. It streamlines UI development, testing, and documentation.
+
+Start Storybook with the following command:
+
+```bash
+npm run storybook
+# or
+yarn run storybook
+```
+
+Open [http://localhost:6006](http://localhost:6006) with your browser to see the result.
+
+## Tests
+
+Start tests with `Jest` with the following command:
+
+```bash
+npm test
+# or
+yarn test
+```
+
+To see the Test Coverage, run the following command:
+
+```bash
+npm run test:coverage
+# or
+yarn run test:coverage
+```
+
+For e2e tests, run the following command:
+
+```bash
+npm run cypress:open
+# or
+yarn run cypress:open
+```
+
+## Build
+
+Run the following command to build your application.
+
+```bash
+npm build
+# or
+yarn build
+```
+
+(Optional) If you want to export a static version of the application, run the following command after the build command:
+
+```bash
+npm run export
+# or
+yarn run export
+```
+
+The code will be on the `out` folder.
+Finally, run the following command to start the Node.js server.
+This server will have the code used in production, different from the development server
+
+```bash
+npm start
+# or
+yarn start
+```
+
+## Development Tools
+
+To maintain good code structure and standardization, it is recommended to have the following plugins in your code editor or IDE:
+
+-   Prettier
+-   ESLint
+-   EditorConfig
