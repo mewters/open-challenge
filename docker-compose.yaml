@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+    dev:
+        image: mewters/open-challenge
+        container_name: mewters_open_challenge
+        ports:
+            - '3000:3000'
+        build:
+            context: .
+            dockerfile: dockerfile
+        volumes:
+            - .:/usr/src/app
+        tty: true
+        depends_on:
+            - multiplayer
+    multiplayer:
+        image: mewters/open-challenge
+        container_name: mewters_open_challenge-multiplayer
+        ports:
+            - '1234:1234'
+        environment:
+            HOST: '0.0.0.0'
+            PORT: 1234
+        build:
+            context: .
+            dockerfile: dockerfile
+        volumes:
+            - .:/usr/src/app
+        command: multiplayer-websocket
+    storybook:
+        image: mewters/open-challenge
+        container_name: mewters_open_challenge-storybook
+        ports:
+            - '6006:6006'
+        environment:
+            HOST: localhost
+            PORT: 6006
+        build:
+            context: .
+            dockerfile: dockerfile
+        volumes:
+            - .:/usr/src/app
+        tty: true
+        command: storybook
