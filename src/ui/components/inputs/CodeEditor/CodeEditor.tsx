@@ -1,7 +1,7 @@
 import React from 'react';
 import Editor from '@monaco-editor/react';
 // import {  } from '@mui/material';
-// import { Component } from './CodeEditor.style';
+import { CodeEditorContainer } from './CodeEditor.style';
 import { useCodeEditor } from './useCodeEditor.hook';
 
 export interface CodeEditorProps {
@@ -10,6 +10,7 @@ export interface CodeEditorProps {
     language?: 'javascript';
     value?: string;
     onChange?: (value: string) => void;
+    readOnly?: boolean;
 }
 const CodeEditor: React.FC<CodeEditorProps> = (props) => {
     const {
@@ -21,7 +22,7 @@ const CodeEditor: React.FC<CodeEditorProps> = (props) => {
     } = useCodeEditor(props);
 
     return (
-        <div ref={containerRef}>
+        <CodeEditorContainer ref={containerRef} readonly={props.readOnly}>
             <Editor
                 onMount={handleEditorDidMount}
                 defaultLanguage={props.language ?? 'javascript'}
@@ -42,9 +43,10 @@ const CodeEditor: React.FC<CodeEditorProps> = (props) => {
                         enabled: false,
                     },
                     overviewRulerLanes: 0,
+                    readOnly: props.readOnly,
                 }}
             />
-        </div>
+        </CodeEditorContainer>
     );
 };
 

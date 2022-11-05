@@ -79,6 +79,7 @@ const Template: Story<CodeEditorProps> = ({ ...args }) => (
 export const Default = Template.bind({});
 Default.args = {
     initialLineNumber: 1,
+    readOnly: false,
     theme: 'Dracula',
     language: 'javascript',
     value: `// some code\n
