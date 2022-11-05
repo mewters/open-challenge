@@ -9,7 +9,7 @@ export interface CodeEditorProps {
     theme?: string;
     language?: 'javascript';
     value?: string;
-    onChange?: (value: string) => void;
+    onChange?: (value: string, linesNumber: number) => void;
     readOnly?: boolean;
 }
 const CodeEditor: React.FC<CodeEditorProps> = (props) => {

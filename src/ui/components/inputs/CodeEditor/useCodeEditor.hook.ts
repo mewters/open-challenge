@@ -57,7 +57,10 @@ export const useCodeEditor = (props: CodeEditorProps) => {
     };
     const handleEditorChange: OnChange = (value, event) => {
         updateEditorHeight();
-        value && props.onChange?.(value);
+        const editor = editorRef.current;
+        editor &&
+            value !== undefined &&
+            props.onChange?.(value, editor.getModel()?.getLineCount() || 0);
     };
 
     const loadTheme = useCallback(async (themeName: string) => {
