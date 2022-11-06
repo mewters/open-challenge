@@ -13,6 +13,5 @@ export function usePageElementsPartial() {
 
     // #endregion
 
-
-    return {}
+    return {};
 }

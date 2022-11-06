@@ -13,6 +13,5 @@ export function useProvidersPartial() {
 
     // #endregion
 
-
-    return {}
+    return {};
 }

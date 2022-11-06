@@ -1,6 +1,3 @@
-
 export class PageElementsPartialLogic {
-    static MyFunction() {
-        
-    }
+    static MyFunction() {}
 }

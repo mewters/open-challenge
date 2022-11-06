@@ -1,6 +1,3 @@
-
 export class ProvidersPartialLogic {
-    static MyFunction() {
-        
-    }
+    static MyFunction() {}
 }
