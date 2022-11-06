@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { useMemo } from 'react';
 import Head from 'next/head';
 import Providers from '@partials/_app/providers/_Providers';
+import PageElements from '@partials/_app/page-elements/_PageElements';
 
 export default function App({
     Component,
@@ -26,7 +27,9 @@ export default function App({
                 />
             </Head>
             <Providers>
-                <Component {...pageProps} />
+                <PageElements>
+                    <Component {...pageProps} />
+                </PageElements>
             </Providers>
         </>
     );
