@@ -2,6 +2,7 @@ import '@styles/globals.css';
 import type { AppProps } from 'next/app';
 import { useMemo } from 'react';
 import Head from 'next/head';
+import Providers from '@partials/_app/providers/_Providers';
 
 export default function App({
     Component,
@@ -24,7 +25,9 @@ export default function App({
                     content="minimum-scale=1, initial-scale=1, user-scalable=0, width=device-width, shrink-to-fit=no"
                 />
             </Head>
-            <Component {...pageProps} />
+            <Providers>
+                <Component {...pageProps} />
+            </Providers>
         </>
     );
 }
