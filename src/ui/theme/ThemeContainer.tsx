@@ -9,7 +9,7 @@ const ThemeContainer: React.FC<PropsWithChildren> = ({ children }) => {
 
     useEffect(() => {
         const savedTheme =
-            (localStorage?.getItem('theme') as 'light' | 'dark') ?? 'light';
+            (localStorage?.getItem('theme') as 'light' | 'dark') ?? 'dark';
         ThemeStore.set.mode(savedTheme);
     }, []);
 
