@@ -22,7 +22,7 @@ const CodeEditor: React.FC<CodeEditorProps> = (props) => {
     } = useCodeEditor(props);
 
     return (
-        <CodeEditorContainer ref={containerRef} readonly={props.readOnly}>
+        <CodeEditorContainer ref={containerRef} readOnly={props.readOnly}>
             <Editor
                 onMount={handleEditorDidMount}
                 defaultLanguage={props.language ?? 'javascript'}

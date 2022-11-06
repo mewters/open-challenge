@@ -4,11 +4,11 @@ import { styled } from '@mui/material/styles';
 export const CodeEditorContainer = styled('div', {
     shouldForwardProp: (prop) => prop !== 'readOnly',
 })<{
-    readonly?: boolean;
+    readOnly?: boolean;
 }>`
     position: relative;
-    ${({ readonly }) =>
-        readonly &&
+    ${({ readOnly }) =>
+        readOnly &&
         `
         &::after {
             content: '';
