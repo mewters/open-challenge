@@ -54,7 +54,7 @@ export class TestsService {
                     value,
                     expected,
                     value === expected,
-                    `Expected: {{value}} / Received: {{expected}}`
+                    `Expected: {{expected}} / Received: {{value}}`
                 );
             },
             toBeTruthy: () => {
@@ -107,7 +107,7 @@ export class TestsService {
             },
             toBeDefined: () => {
                 this.createMatcher(
-                    value,
+                    JSON.stringify(value as object),
                     undefined,
                     value !== undefined,
                     `Expected: {{value}} to be defined`
@@ -115,7 +115,7 @@ export class TestsService {
             },
             toBeUndefined: () => {
                 this.createMatcher(
-                    value,
+                    JSON.stringify(value as object),
                     undefined,
                     value === undefined,
                     `Expected: {{value}} to be undefined`
@@ -123,7 +123,7 @@ export class TestsService {
             },
             toBeNull: () => {
                 this.createMatcher(
-                    value,
+                    JSON.stringify(value as object),
                     null,
                     value === null,
                     `Expected: {{value}} to be null`
@@ -131,7 +131,7 @@ export class TestsService {
             },
             toBeNaN: () => {
                 this.createMatcher(
-                    value,
+                    JSON.stringify(value as object),
                     NaN,
                     Number.isNaN(value),
                     `Expected: {{value}} to be NaN`
@@ -147,7 +147,7 @@ export class TestsService {
             },
             toContain: (expected: unknown) => {
                 this.createMatcher(
-                    value,
+                    JSON.stringify(value as object),
                     expected,
                     (value as unknown[]).includes(expected),
                     `Expected: {{value}} to contain {{expected}}`
@@ -155,7 +155,7 @@ export class TestsService {
             },
             toHaveLength: (expected: number) => {
                 this.createMatcher(
-                    value,
+                    JSON.stringify(value as object),
                     expected,
                     (value as unknown[]).length === expected,
                     `Expected: {{value}} to have length {{expected}}`
@@ -163,7 +163,7 @@ export class TestsService {
             },
             toHaveProperty: (expected: string) => {
                 this.createMatcher(
-                    value,
+                    JSON.stringify(value as object),
                     expected,
                     (value as object).hasOwnProperty(expected),
                     `Expected: {{value}} to have property {{expected}}`
@@ -183,7 +183,7 @@ export class TestsService {
                         value,
                         expected,
                         value !== expected,
-                        `Expected: not {{value}} / Received: {{expected}}`
+                        `Expected: not {{expected}} / Received: {{value}}`
                     );
                 },
                 toBeInstanceOf: (expected: any) => {
@@ -196,7 +196,7 @@ export class TestsService {
                 },
                 toContain: (expected: unknown) => {
                     this.createMatcher(
-                        value,
+                        JSON.stringify(value as object),
                         expected,
                         !(value as unknown[]).includes(expected),
                         `Expected: {{value}} not to contain {{expected}}`
@@ -204,7 +204,7 @@ export class TestsService {
                 },
                 toHaveLength: (expected: number) => {
                     this.createMatcher(
-                        value,
+                        JSON.stringify(value as object),
                         expected,
                         (value as unknown[]).length !== expected,
                         `Expected: {{value}} not to have length {{expected}}`
@@ -212,7 +212,7 @@ export class TestsService {
                 },
                 toHaveProperty: (expected: string) => {
                     this.createMatcher(
-                        value,
+                        JSON.stringify(value as object),
                         expected,
                         !(value as object).hasOwnProperty(expected),
                         `Expected: {{value}} not to have property {{expected}}`
