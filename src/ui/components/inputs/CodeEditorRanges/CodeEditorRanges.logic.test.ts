@@ -18,24 +18,24 @@ describe('CodeEditorRangesLogic', () => {
         expect(codeRanges).toHaveLength(5);
 
         expect(codeRanges[0].code).toContain('const a = 1;');
-        expect(codeRanges[0].isEditable).toBeFalsy();
-        expect(codeRanges[0].isVisible).toBeTruthy();
+        expect(codeRanges[0].isEditable).toBeFalse();
+        expect(codeRanges[0].isVisible).toBeTrue();
 
         expect(codeRanges[1].code).toContain('const b = 2;');
-        expect(codeRanges[1].isEditable).toBeFalsy();
-        expect(codeRanges[1].isVisible).toBeFalsy();
+        expect(codeRanges[1].isEditable).toBeFalse();
+        expect(codeRanges[1].isVisible).toBeFalse();
 
         expect(codeRanges[2].code).toContain('const c = 3;');
-        expect(codeRanges[2].isEditable).toBeFalsy();
-        expect(codeRanges[2].isVisible).toBeTruthy();
+        expect(codeRanges[2].isEditable).toBeFalse();
+        expect(codeRanges[2].isVisible).toBeTrue();
 
         expect(codeRanges[3].code).toContain('const d = 4;');
-        expect(codeRanges[3].isEditable).toBeTruthy();
-        expect(codeRanges[3].isVisible).toBeTruthy();
+        expect(codeRanges[3].isEditable).toBeTrue();
+        expect(codeRanges[3].isVisible).toBeTrue();
 
         expect(codeRanges[4].code).toContain('const e = 5;');
-        expect(codeRanges[4].isEditable).toBeFalsy();
-        expect(codeRanges[4].isVisible).toBeTruthy();
+        expect(codeRanges[4].isEditable).toBeFalse();
+        expect(codeRanges[4].isVisible).toBeTrue();
 
         const fullCode = codeRanges.map((codeRange) => codeRange.code).join('');
         expect(fullCode).not.toContain('---hidden---');
