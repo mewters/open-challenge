@@ -1,26 +1,20 @@
-interface DescriptionInterface {
-    name: string;
-    it: ItInterface[];
-}
-
-interface ItInterface {
-    name: string;
-    expects: ExpectInterface[];
-}
-
-interface ExpectInterface {
-    name: string;
-    status: boolean;
-}
+import {
+    DescriptionInterface,
+    ItInterface,
+    ExpectInterface,
+    TestsResultsInterface,
+} from '@typing/TestsInterface';
 
 export class TestsService {
     private beforeEachs: Function[] = [];
     private afterEachs: Function[] = [];
     private afterAlls: Function[] = [];
     private beforeAlls: Function[] = [];
-    private totalTests = 0;
     private passedTests = 0;
     private failedTests = 0;
+    private get totalTests() {
+        return this.passedTests + this.failedTests;
+    }
     private stats = [] as DescriptionInterface[];
     private currentDescription = {
         name: '',
@@ -256,7 +250,6 @@ export class TestsService {
     }
 
     it(description: string, fn: Function) {
-        this.totalTests++;
         this.beforeEachs.forEach((fn) => fn.apply(this));
 
         this.currentIt = {
@@ -284,6 +277,15 @@ export class TestsService {
         this.afterAlls.forEach((fn) => fn.apply(this));
 
         this.stats.push(this.currentDescription);
+    }
+
+    getResults(): TestsResultsInterface {
+        return {
+            totalTests: this.totalTests,
+            passedTests: this.passedTests,
+            failedTests: this.failedTests,
+            stats: this.stats,
+        };
     }
 
     showResults() {
