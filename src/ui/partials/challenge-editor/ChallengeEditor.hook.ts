@@ -157,6 +157,7 @@ export function useChallengeEditorPage() {
         error,
         testsResults,
         challengesList,
+        setChallengesList,
         selectChallenge,
         saveChallenge,
         removeChallenge,

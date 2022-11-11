@@ -17,6 +17,7 @@ import { CodesContainer } from '@partials/challenge-editor/ChallengeEditor.style
 import { useChallengeEditorPage } from '@partials/challenge-editor/ChallengeEditor.hook';
 import { ThemeStore } from '@stores/ThemeStore';
 import TestsResults from '@components/data-display/TestsResults/TestsResults';
+import { ReactSortable } from 'react-sortablejs';
 // import { ChallengeEditorPageLogic } from '@partials/challenge-editor/ChallengeEditor.logic';
 // import { ChallengeEditorPageStore } from '@partials/challenge-editor/ChallengeEditor.store';
 
@@ -41,6 +42,7 @@ export default function ChallengeEditor(props: ChallengeEditorProps) {
         error,
         testsResults,
         challengesList,
+        setChallengesList,
         selectChallenge,
         saveChallenge,
         removeChallenge,
@@ -180,30 +182,37 @@ export default function ChallengeEditor(props: ChallengeEditorProps) {
             </Button>
 
             <List>
-                {challengesList.map((challenge) => (
-                    <ListItem
-                        key={challenge.id}
-                        secondaryAction={
-                            <IconButton
-                                onClick={() => removeChallenge(challenge.id)}
-                            >
-                                <i className="fas fa-trash" />
-                            </IconButton>
-                        }
-                    >
-                        <ListItemButton
-                            onClick={() => selectChallenge(challenge)}
+                <ReactSortable
+                    list={challengesList}
+                    setList={setChallengesList}
+                >
+                    {challengesList.map((challenge) => (
+                        <ListItem
+                            key={challenge.id}
+                            secondaryAction={
+                                <IconButton
+                                    onClick={() =>
+                                        removeChallenge(challenge.id)
+                                    }
+                                >
+                                    <i className="fas fa-trash" />
+                                </IconButton>
+                            }
                         >
-                            <ListItemText
-                                primary={challenge.title}
-                                secondary={challenge.description}
-                                primaryTypographyProps={{
-                                    color: 'textPrimary',
-                                }}
-                            />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+                            <ListItemButton
+                                onClick={() => selectChallenge(challenge)}
+                            >
+                                <ListItemText
+                                    primary={challenge.title}
+                                    secondary={challenge.description}
+                                    primaryTypographyProps={{
+                                        color: 'textPrimary',
+                                    }}
+                                />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
+                </ReactSortable>
             </List>
 
             <Button
