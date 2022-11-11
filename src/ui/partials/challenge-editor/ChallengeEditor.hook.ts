@@ -142,6 +142,7 @@ export function useChallengeEditorPage() {
     // #endregion
 
     return {
+        selectedChallengeId,
         title,
         setTitle,
         description,

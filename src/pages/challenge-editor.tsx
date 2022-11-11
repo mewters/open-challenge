@@ -26,6 +26,7 @@ interface ChallengeEditorProps {
 
 export default function ChallengeEditor(props: ChallengeEditorProps) {
     const {
+        selectedChallengeId,
         title,
         setTitle,
         description,
@@ -175,7 +176,7 @@ export default function ChallengeEditor(props: ChallengeEditorProps) {
                 }
                 sx={{ mt: 3 }}
             >
-                Save
+                {selectedChallengeId ? 'Update' : 'Save'} Challenge
             </Button>
 
             <List>
