@@ -1,0 +1,12 @@
+[
+    {
+        "id": "1668199255098",
+        "isDone": false,
+        "isCorrect": false,
+        "title": "Sum",
+        "description": "Complete the code to make the \"sum\" function return the sum of a + b.",
+        "code": "function sum(a, b) {\n    [---editable---\n    // your code here\n    ---editable---]\n}\n[---hidden---\nreturn sum;\n---hidden---]",
+        "testsCode": "test.describe('sum', () => {\n    test.it('sum(2, 3) should return 5', () => {\n        test.expect(result(2, 3)).toBe(5);\n    });\n    test.it('sum(3, 3) should return 6', () => {\n        test.expect(result(3, 3)).toBe(6);\n    });\n});",
+        "answer": "function sum(a, b) {\n        // your code here\n    return a + b;}\n"
+    }
+]
