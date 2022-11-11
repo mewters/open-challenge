@@ -185,7 +185,7 @@ export default function ChallengeEditor(props: ChallengeEditorProps) {
                         key={challenge.id}
                         secondaryAction={
                             <IconButton
-                                onClick={() => removeChallenge(challenge)}
+                                onClick={() => removeChallenge(challenge.id)}
                             >
                                 <i className="fas fa-trash" />
                             </IconButton>
