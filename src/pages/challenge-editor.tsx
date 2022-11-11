@@ -28,6 +28,8 @@ interface ChallengeEditorProps {
 export default function ChallengeEditor(props: ChallengeEditorProps) {
     const {
         selectedChallengeId,
+        canSave,
+        isSuccessfullyTested,
         title,
         setTitle,
         description,
@@ -49,6 +51,7 @@ export default function ChallengeEditor(props: ChallengeEditorProps) {
         loadChallengesList,
         challengesListJSON,
         setChallengesListJSON,
+        resetAllFields,
     } = useChallengeEditorPage();
     const editorTheme = ThemeStore.use.editorTheme();
     return (
@@ -147,17 +150,15 @@ export default function ChallengeEditor(props: ChallengeEditorProps) {
                 </Typography>
             )}
 
-            {testsResults &&
-                testsResults.failedTests === 0 &&
-                testsResults.passedTests > 0 && (
-                    <Typography
-                        variant={'body1'}
-                        color={'textSecondary'}
-                        sx={{ mb: 3 }}
-                    >
-                        Congratulations! You passed all tests!
-                    </Typography>
-                )}
+            {isSuccessfullyTested && (
+                <Typography
+                    variant={'body1'}
+                    color={'textSecondary'}
+                    sx={{ mb: 3 }}
+                >
+                    Congratulations! You passed all tests!
+                </Typography>
+            )}
             {testsResults ? (
                 <TestsResults {...testsResults} />
             ) : (
@@ -166,20 +167,25 @@ export default function ChallengeEditor(props: ChallengeEditorProps) {
                 </Typography>
             )}
 
-            <Button
-                variant={'contained'}
-                onClick={saveChallenge}
-                disabled={
-                    !testsResults ||
-                    testsResults?.failedTests > 0 ||
-                    testsResults?.passedTests === 0 ||
-                    !title ||
-                    !description
-                }
-                sx={{ mt: 3 }}
+            <Stack
+                gap={2}
+                sx={{ mt: 2 }}
+                direction={'row'}
+                justifyContent={'end'}
             >
-                {selectedChallengeId ? 'Update' : 'Save'} Challenge
-            </Button>
+                {selectedChallengeId && (
+                    <Button variant={'outlined'} onClick={resetAllFields}>
+                        Cancel
+                    </Button>
+                )}
+                <Button
+                    variant={'contained'}
+                    onClick={saveChallenge}
+                    disabled={!canSave}
+                >
+                    {selectedChallengeId ? 'Update' : 'Save'} Challenge
+                </Button>
+            </Stack>
 
             <List>
                 <ReactSortable

@@ -19,6 +19,11 @@ export function useChallengeEditorPage() {
     const [error, setError] = useState<string>();
     const [challengesList, setChallengesList] = useState<Challenge[]>([]);
     const [challengesListJSON, setChallengesListJSON] = useState('');
+    const isSuccessfullyTested =
+        testsResults &&
+        testsResults.passedTests > 0 &&
+        testsResults.passedTests === testsResults.totalTests;
+    const canSave = title && description && isSuccessfullyTested;
 
     // #endregion
 
@@ -143,6 +148,8 @@ export function useChallengeEditorPage() {
 
     return {
         selectedChallengeId,
+        canSave,
+        isSuccessfullyTested,
         title,
         setTitle,
         description,
@@ -164,5 +171,6 @@ export function useChallengeEditorPage() {
         loadChallengesList,
         challengesListJSON,
         setChallengesListJSON,
+        resetAllFields,
     };
 }
