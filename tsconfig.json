@@ -16,6 +16,7 @@
         "jsx": "preserve",
         "incremental": true,
         "paths": {
+            "@data-source/*": ["data/data-source/*"],
             "@hooks/*": ["data/hooks/*"],
             "@services/*": ["data/services/*"],
             "@reducers/*": ["data/reducers/*"],
