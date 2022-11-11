@@ -4,6 +4,7 @@ import { CodeEditorRangesLogic } from './CodeEditorRanges.logic';
 
 export const useCodeEditorRanges = ({
     onChange,
+    onVisibleCodeChange,
     ...props
 }: CodeEditorRangesProps) => {
     // #region State
@@ -47,6 +48,16 @@ export const useCodeEditorRanges = ({
             onChange(code, numberOfLines);
         }
     }, [codeRangeValues, onChange]);
+
+    useEffect(() => {
+        if (onVisibleCodeChange) {
+            const code = codeRangeValues
+                .filter((codeRange) => codeRange.isVisible)
+                .map((codeRange) => codeRange.code)
+                .join('');
+            onVisibleCodeChange(code);
+        }
+    }, [codeRangeValues, onVisibleCodeChange]);
     // #endregion
 
     return {

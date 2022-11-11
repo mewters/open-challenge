@@ -33,7 +33,7 @@ const CodeEditor: React.FC<CodeEditorProps> = (props) => {
                     lineNumbers: handleLineNumbers,
                     cursorBlinking: 'smooth',
                     cursorSmoothCaretAnimation: true,
-                    formatOnPaste: true,
+                    // formatOnPaste: true,
                     // formatOnType: true,
                     automaticLayout: true,
                     scrollBeyondLastLine: false,

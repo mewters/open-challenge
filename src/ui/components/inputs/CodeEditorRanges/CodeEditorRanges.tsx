@@ -4,7 +4,9 @@ import { CodeEditorRangesContainer } from './CodeEditorRanges.style';
 import { useCodeEditorRanges } from './useCodeEditorRanges.hook';
 // import {  } from '@mui/material';
 
-export interface CodeEditorRangesProps extends CodeEditorProps {}
+export interface CodeEditorRangesProps extends CodeEditorProps {
+    onVisibleCodeChange?: (visibleCode: string) => void;
+}
 
 const CodeEditorRanges: React.FC<CodeEditorRangesProps> = (props) => {
     const { codeRangeValues, initialLines, updateCodeRange } =
