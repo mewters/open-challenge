@@ -120,7 +120,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
         return {
             props: {
-                title: 'Challenge',
+                title: `Challenge - ${challenge.title}`,
                 challenge,
             },
         };
