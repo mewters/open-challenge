@@ -18,6 +18,7 @@
         "paths": {
             "@data-source/*": ["data/data-source/*"],
             "@hooks/*": ["data/hooks/*"],
+            "@server/*": ["data/server/*"],
             "@services/*": ["data/services/*"],
             "@reducers/*": ["data/reducers/*"],
             "@contexts/*": ["data/contexts/*"],
