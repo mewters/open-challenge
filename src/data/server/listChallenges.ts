@@ -15,10 +15,15 @@ async function* getFiles(dir: string): AsyncGenerator<string> {
     }
 }
 
-async function getChallengesIds(filePath: string) {
+async function getChallenges(
+    filePath: string
+): Promise<{ id: string; title: string }[]> {
     const file = await readFile(filePath, 'utf8');
     const challenges = JSON.parse(file);
-    return challenges.map((challenge: Challenge) => challenge.id);
+    return challenges.map((challenge: Challenge) => ({
+        id: challenge.id,
+        title: challenge.title,
+    }));
 }
 
 export async function getChallengesFiles() {
@@ -26,7 +31,7 @@ export async function getChallengesFiles() {
     const filesList = [];
 
     for await (const filePath of getFiles(basePath)) {
-        const challenges = await getChallengesIds(filePath);
+        const challenges = await getChallenges(filePath);
         filesList.push({
             filePath: path.join('src', path.relative('src', filePath)),
             challenges,

@@ -85,8 +85,8 @@ export const getStaticPaths: GetStaticPaths = async (props) => {
 
     for (const challengeFile of challengesFiles) {
         const challengePath = challengeFile.filePath.replace('.json', '');
-        for (const challengeId of challengeFile.challenges) {
-            challengesPaths.push(path.join(challengePath, challengeId));
+        for (const challenge of challengeFile.challenges) {
+            challengesPaths.push(path.join(challengePath, challenge.id));
         }
     }
 
