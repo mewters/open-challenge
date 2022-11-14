@@ -8,6 +8,8 @@
         "storybook": "start-storybook -p 6006",
         "plop": "plop",
         "multiplayer-websocket": "npx y-websocket --port 1234 --host 0.0.0.0",
+        "update-challenges-list": "node scripts/updateChallengesList.js",
+        "prettier": "prettier --write ./src",
         "▚▚▚▚▚         TEST         ▞▞▞▞▞": "",
         "test": "jest --watch",
         "test:coverage": "jest --collect-coverage",

@@ -1,12 +1,11 @@
 import { Challenge as ChallengeInterface } from '@typing/ChallengeInterface';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { readFile, readdir } from 'fs/promises';
+import { readFile } from 'fs/promises';
 import path from 'path';
 import CodeEditorRanges from '@components/inputs/CodeEditorRanges/CodeEditorRanges';
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import { ThemeStore } from '@stores/ThemeStore';
 import TestsResults from '@components/data-display/TestsResults/TestsResults';
-import { getChallengesFiles } from '@server/listChallenges';
 
 import { Component } from '@partials/challenges/[...challenge]/Challenge.styled';
 import { useChallengePage } from '@partials/challenges/[...challenge]/Challenge.hook';
@@ -80,15 +79,9 @@ export default function Challenge(props: ChallengeProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async (props) => {
-    const challengesFiles = await getChallengesFiles();
-    const challengesPaths = [];
-
-    for (const challengeFile of challengesFiles) {
-        const challengePath = challengeFile.filePath.replace('.json', '');
-        for (const challenge of challengeFile.challenges) {
-            challengesPaths.push(path.join(challengePath, challenge.id));
-        }
-    }
+    const challengesPaths: string[] = JSON.parse(
+        await readFile('src/data/data-source/challenges-paths.json', 'utf8')
+    );
 
     return {
         paths: challengesPaths.map((challengePath) => ({

@@ -8,3 +8,9 @@ export interface Challenge {
     testsCode: string;
     answer?: string;
 }
+
+export interface ChallengeStructure {
+    path: string;
+    challenges?: { id: string; title: string }[];
+    children?: ChallengeStructure[];
+}
