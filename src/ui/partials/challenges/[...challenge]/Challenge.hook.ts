@@ -21,11 +21,13 @@ export function useChallengePage(props: ChallengeProps) {
         setError('');
         setTestsResults(undefined);
         try {
-            TestRunner.run(challengeCode, props?.challenge?.testsCode).then(
-                (results: TestsResultsInterface) => {
+            TestRunner.run(challengeCode, props?.challenge?.testsCode)
+                .then((results: TestsResultsInterface) => {
                     setTestsResults(results);
-                }
-            );
+                })
+                .catch((error) => {
+                    setError(`${error.name}: ${error.message}`);
+                });
         } catch (error) {
             if (error instanceof Error) {
                 console.log(error.name);

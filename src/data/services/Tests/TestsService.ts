@@ -316,18 +316,33 @@ export class TestsService {
 }
 
 export class TestRunner {
-    static async run(challengeCode: string, testsCode: string) {
-        const __challengeFunction = Function(challengeCode)();
-        const testResults = Function(
-            'TestsService',
-            '__challengeFunction',
-            `
-                return new Promise(async (resolve) => {
-                    const test = new TestsService();
-                    ${testsCode}
-                    resolve(test.getResults());
-                });`
-        )(TestsService, __challengeFunction);
-        return testResults as TestsResultsInterface;
+    private static runTimeout: number = 5000; // 5 seconds
+
+    static async run(
+        challengeCode: string,
+        testsCode: string
+    ): Promise<TestsResultsInterface> {
+        return new Promise((resolve, reject) => {
+            const timer = setTimeout(() => {
+                reject(new Error('Tests timed out'));
+            }, this.runTimeout);
+
+            const __challengeFunction = Function(challengeCode)();
+            const testResults = Function(
+                'TestsService',
+                '__challengeFunction',
+                `
+                    return new Promise(async (resolve) => {
+                        const test = new TestsService();
+                        ${testsCode}
+                        resolve(test.getResults());
+                    });`
+            )(TestsService, __challengeFunction);
+
+            (testResults as Promise<TestsResultsInterface>).then((results) => {
+                clearTimeout(timer);
+                resolve(results);
+            });
+        });
     }
 }

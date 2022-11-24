@@ -33,11 +33,13 @@ export function useChallengeEditorPage() {
         setError('');
         setTestsResults(undefined);
         try {
-            TestRunner.run(codePreview, testsCode).then(
-                (results: TestsResultsInterface) => {
+            TestRunner.run(codePreview, testsCode)
+                .then((results: TestsResultsInterface) => {
                     setTestsResults(results);
-                }
-            );
+                })
+                .catch((error) => {
+                    setError(`${error.name}: ${error.message}`);
+                });
         } catch (error) {
             if (error instanceof Error) {
                 console.log(error.name);
