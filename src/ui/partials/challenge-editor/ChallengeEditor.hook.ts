@@ -1,4 +1,4 @@
-import { TestsService } from '@services/Tests/TestsService';
+import { TestRunner } from '@services/Tests/TestsService';
 import { Challenge } from '@typing/ChallengeInterface';
 import { TestsResultsInterface } from '@typing/TestsInterface';
 import { useState } from 'react';
@@ -33,20 +33,11 @@ export function useChallengeEditorPage() {
         setError('');
         setTestsResults(undefined);
         try {
-            const __challengeFunction = Function(codePreview)();
-            const testResults = Function(
-                'TestsService',
-                '__challengeFunction',
-                `
-                return new Promise(async (resolve) => {
-                    const test = new TestsService();
-                    ${testsCode}
-                    resolve(test.getResults());
-                });`
-            )(TestsService, __challengeFunction);
-            testResults.then((results: TestsResultsInterface) => {
-                setTestsResults(results);
-            });
+            TestRunner.run(codePreview, testsCode).then(
+                (results: TestsResultsInterface) => {
+                    setTestsResults(results);
+                }
+            );
         } catch (error) {
             if (error instanceof Error) {
                 console.log(error.name);
