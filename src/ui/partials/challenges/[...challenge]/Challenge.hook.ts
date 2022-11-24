@@ -21,13 +21,20 @@ export function useChallengePage(props: ChallengeProps) {
         setError('');
         setTestsResults(undefined);
         try {
-            const result = Function(challengeCode)();
+            const __challengeFunction = Function(challengeCode)();
             const testResults = Function(
                 'TestsService',
-                'result',
-                `const test = new TestsService();\n${props.challenge.testsCode}\nreturn test.getResults();`
-            )(TestsService, result);
-            setTestsResults(testResults);
+                '__challengeFunction',
+                `
+                return new Promise(async (resolve) => {
+                    const test = new TestsService();
+                    ${props.challenge.testsCode}
+                    resolve(test.getResults());
+                });`
+            )(TestsService, __challengeFunction);
+            testResults.then((results: TestsResultsInterface) => {
+                setTestsResults(results);
+            });
         } catch (error) {
             if (error instanceof Error) {
                 console.log(error.name);

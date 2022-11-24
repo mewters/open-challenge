@@ -249,7 +249,7 @@ export class TestsService {
         }
     }
 
-    it(description: string, fn: Function) {
+    async it(description: string, fn: Function) {
         this.beforeEachs.forEach((fn) => fn.apply(this));
 
         this.currentIt = {
@@ -257,14 +257,18 @@ export class TestsService {
             expects: [],
         };
 
-        fn.apply(this);
+        if (fn.constructor.name === 'AsyncFunction') {
+            await fn.apply(this);
+        } else {
+            fn.apply(this);
+        }
 
         this.afterEachs.forEach((fn) => fn.apply(this));
 
         this.currentDescription.it.push(this.currentIt);
     }
 
-    describe(description: string, fn: Function) {
+    async describe(description: string, fn: Function) {
         this.beforeAlls.forEach((fn) => fn.apply(this));
 
         this.currentDescription = {
@@ -272,7 +276,11 @@ export class TestsService {
             it: [],
         };
 
-        fn.apply(this);
+        if (fn.constructor.name === 'AsyncFunction') {
+            await fn.apply(this);
+        } else {
+            fn.apply(this);
+        }
 
         this.afterAlls.forEach((fn) => fn.apply(this));
 

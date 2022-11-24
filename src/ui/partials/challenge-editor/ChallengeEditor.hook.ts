@@ -33,13 +33,20 @@ export function useChallengeEditorPage() {
         setError('');
         setTestsResults(undefined);
         try {
-            const result = Function(codePreview)();
+            const __challengeFunction = Function(codePreview)();
             const testResults = Function(
                 'TestsService',
-                'result',
-                `const test = new TestsService();\n${testsCode}\nreturn test.getResults();`
-            )(TestsService, result);
-            setTestsResults(testResults);
+                '__challengeFunction',
+                `
+                return new Promise(async (resolve) => {
+                    const test = new TestsService();
+                    ${testsCode}
+                    resolve(test.getResults());
+                });`
+            )(TestsService, __challengeFunction);
+            testResults.then((results: TestsResultsInterface) => {
+                setTestsResults(results);
+            });
         } catch (error) {
             if (error instanceof Error) {
                 console.log(error.name);
