@@ -1,9 +1,10 @@
 import MainDrawer from '@components/navigation/MainDrawer/MainDrawer';
 import Footer from '@components/surfaces/Footer/Footer';
 import Header from '@components/surfaces/Header/Header';
-import { IconButton } from '@mui/material';
+import { IconButton, Typography } from '@mui/material';
 import { MainDrawerStore } from '@stores/MainDrawerStore';
 import { ThemeStore } from '@stores/ThemeStore';
+import Link from 'next/link';
 import React from 'react';
 
 import {
@@ -21,7 +22,18 @@ const PageElements: React.FC<{ children: React.ReactNode }> = ({
 
     return (
         <PageElementsContainer>
-            <MainDrawer>abc</MainDrawer>
+            <MainDrawer>
+                <Typography align={'center'} variant={'h2'} sx={{ my: 2 }}>
+                    Open Challenge
+                </Typography>
+                <Link
+                    href={`/challenges-list`}
+                    passHref
+                    onClick={() => MainDrawerStore.set.isOpen(false)}
+                >
+                    <Typography>Challenges List</Typography>
+                </Link>
+            </MainDrawer>
             <MainContent>
                 <Header
                     leftContent={
