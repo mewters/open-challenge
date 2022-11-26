@@ -15,4 +15,10 @@ describe('TextService', () => {
             '01 - JS 02 to a Basics'
         );
     });
+    it('should test titleToURL', () => {
+        expect(TextService.titleToURL('01 - JS Basics')).toBe('01-js-basics');
+        expect(
+            TextService.titleToURL('01 - JS !@#$%&*()[] 02 to a Basics')
+        ).toBe('01-js-02-to-a-basics');
+    });
 });

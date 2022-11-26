@@ -14,4 +14,10 @@ export class TextService {
             })
             .join(' ');
     }
+    static titleToURL(title: string) {
+        return title
+            .toLowerCase()
+            .replace(/[^\w ]+/g, '')
+            .replace(/ +/g, '-');
+    }
 }
