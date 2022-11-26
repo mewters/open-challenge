@@ -1,5 +1,5 @@
 // import { ChallengePageStore } from './Challenge.store';
 
-export class ChallengePageLogic {
+export class ChallengeIdPageLogic {
     static MyFunction() {}
 }

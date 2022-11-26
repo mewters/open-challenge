@@ -7,24 +7,24 @@ import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import { ThemeStore } from '@stores/ThemeStore';
 import TestsResults from '@components/data-display/TestsResults/TestsResults';
 
-import { Component } from '@partials/challenges/[...challenge]/Challenge.styled';
-import { useChallengePage } from '@partials/challenges/[...challenge]/Challenge.hook';
-import { ChallengePageLogic } from '@partials/challenges/[...challenge]/Challenge.logic';
-import { ChallengePageStore } from '@partials/challenges/[...challenge]/Challenge.store';
+import { Component } from '@partials/challenges/[challengeFolder]/[challengeFile]/ChallengeId.styled';
+import { useChallengeIdPage } from '@partials/challenges/[challengeFolder]/[challengeFile]/ChallengeId.hook';
+import { ChallengeIdPageLogic } from '@partials/challenges/[challengeFolder]/[challengeFile]/ChallengeId.logic';
+import { ChallengeIdPageStore } from '@partials/challenges/[challengeFolder]/[challengeFile]/ChallengeId.store';
 
 export interface ChallengeProps {
     title: string;
     challenge: ChallengeInterface;
 }
 
-export default function Challenge(props: ChallengeProps) {
+export default function ChallengeId(props: ChallengeProps) {
     const {
         setChallengeCode,
         testsResults,
         error,
         isSuccessfullyTested,
         runTests,
-    } = useChallengePage(props);
+    } = useChallengeIdPage(props);
     const editorTheme = ThemeStore.use.editorTheme();
 
     if (!props.challenge) {
@@ -83,23 +83,35 @@ export const getStaticPaths: GetStaticPaths = async (props) => {
         await readFile('src/data/data-source/challenges-paths.json', 'utf8')
     );
 
+    function getParamsFromPath(path: string): string[] {
+        const url = path.replace('src/data/data-source/challenges/', '');
+        return url.split('/');
+    }
+
     return {
-        paths: challengesPaths.map((challengePath) => ({
-            params: {
-                challenge: [challengePath],
-            },
-        })),
-        fallback: 'blocking',
+        paths: challengesPaths.map((challengePath) => {
+            const [challengeFolder, challengeFile, challengeId] =
+                getParamsFromPath(challengePath);
+
+            return {
+                params: {
+                    challengeFolder,
+                    challengeFile,
+                    challengeId,
+                },
+            };
+        }),
+        fallback: true,
     };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
     try {
-        const challengePath = context.params?.challenge as string[];
-        const challengeId = challengePath.pop();
+        const challengeId = context.params?.challengeId as string;
         const challengeFilePath = path.join(
             'src/data/data-source/challenges',
-            `${challengePath.join('/')}.json`
+            context.params?.challengeFolder as string,
+            `${context.params?.challengeFile as string}.json`
         );
         const file = await readFile(challengeFilePath, 'utf8');
 

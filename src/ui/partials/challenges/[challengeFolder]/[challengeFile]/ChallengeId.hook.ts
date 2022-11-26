@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { TestsResultsInterface } from '@typing/TestsInterface';
-import { ChallengeProps } from 'pages/challenges/[...challenge]';
+import { ChallengeProps } from 'pages/challenges/[challengeFolder]/[challengeFile]/[challengeId]';
 import { TestRunner } from '@services/Tests/TestsService';
 // import { ChallengePageStore } from './Challenge.store';
 // import { ChallengePageLogic } from './Challenge.logic';
 
-export function useChallengePage(props: ChallengeProps) {
+export function useChallengeIdPage(props: ChallengeProps) {
     // #region [ Local State ]
     const [challengeCode, setChallengeCode] = useState(props?.challenge?.code);
     const [testsResults, setTestsResults] = useState<TestsResultsInterface>();
