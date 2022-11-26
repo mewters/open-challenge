@@ -9,6 +9,7 @@ import {
     ListItemIcon,
     ListItemText,
     ListSubheader,
+    TextField,
     Typography,
 } from '@mui/material';
 import { TextService } from '@services/Text/TextService';
@@ -32,8 +33,13 @@ interface ChallengesProps {
 }
 
 export default function Challenges(props: ChallengesProps) {
-    const { selectedChallengeDirectory, handleOpenDirectory } =
-        useChallengesPage();
+    const {
+        selectedChallengeDirectory,
+        handleOpenDirectory,
+        searchText,
+        setSearchText,
+        filteredChallenges,
+    } = useChallengesPage(props.challenges);
 
     return (
         <div>
@@ -47,12 +53,21 @@ export default function Challenges(props: ChallengesProps) {
             </Typography>
 
             {props.challenges.length > 0 ? (
-                <ChallengesList
-                    challenges={props.challenges}
-                    path=""
-                    onOpenDirectory={handleOpenDirectory}
-                    selectedDirectory={selectedChallengeDirectory}
-                />
+                <>
+                    <TextField
+                        label={'Search'}
+                        sx={{ mb: 2 }}
+                        fullWidth
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                    />
+                    <ChallengesList
+                        challenges={filteredChallenges}
+                        path=""
+                        onOpenDirectory={handleOpenDirectory}
+                        selectedDirectory={selectedChallengeDirectory}
+                    />
+                </>
             ) : (
                 <Box sx={{ textAlign: 'center', my: 10 }}>
                     <CircularProgress />

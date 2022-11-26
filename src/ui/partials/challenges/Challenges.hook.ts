@@ -1,12 +1,22 @@
+import { useState, useMemo } from 'react';
+import { ChallengeStructure } from '@typing/ChallengeInterface';
 // import { ChallengesPageStore } from './Challenges.store';
-// import { ChallengesPageLogic } from './Challenges.logic';
+import { ChallengesPageLogic } from './Challenges.logic';
 
-import { useState } from 'react';
-
-export function useChallengesPage() {
+export function useChallengesPage(challenges: ChallengeStructure[]) {
     // #region [ Local State ]
+    const [searchText, setSearchText] = useState('');
     const [selectedChallengeDirectory, setSelectedChallengeDirectory] =
         useState('');
+    const filteredChallenges = useMemo(() => {
+        // if (searchText === '') {
+        //     return challenges;
+        // }
+        // return ChallengesPageLogic.filterChallenges(challenges, searchText);
+        return challenges;
+    }, [challenges]);
+    // }, [challenges, searchText]);
+
     // #endregion
 
     // #region [ Methods ]
@@ -23,5 +33,11 @@ export function useChallengesPage() {
 
     // #endregion
 
-    return { selectedChallengeDirectory, handleOpenDirectory };
+    return {
+        selectedChallengeDirectory,
+        handleOpenDirectory,
+        searchText,
+        setSearchText,
+        filteredChallenges,
+    };
 }
