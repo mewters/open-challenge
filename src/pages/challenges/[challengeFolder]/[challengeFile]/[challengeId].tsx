@@ -47,7 +47,11 @@ export default function ChallengeId(props: ChallengeProps) {
             <Typography variant={'h1'} color={'textPrimary'} sx={{ my: 4 }}>
                 {props.challenge.title}
             </Typography>
-            <Typography variant={'body1'} color={'textPrimary'} sx={{ my: 4 }}>
+            <Typography
+                variant={'body1'}
+                color={'textPrimary'}
+                sx={{ my: 4, whiteSpace: 'pre-line' }}
+            >
                 {props.challenge.description}
             </Typography>
             <CodeEditorRanges
