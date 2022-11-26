@@ -1,8 +1,11 @@
-export interface Challenge {
+export interface ChallengeBaseData {
     id: string;
+    title: string;
+}
+
+export interface Challenge extends ChallengeBaseData {
     isDone: boolean;
     isCorrect: boolean;
-    title: string;
     description: string;
     code: string;
     testsCode: string;
@@ -11,6 +14,6 @@ export interface Challenge {
 
 export interface ChallengeStructure {
     path: string;
-    challenges?: { id: string; title: string }[];
+    challenges?: ChallengeBaseData[];
     children?: ChallengeStructure[];
 }
