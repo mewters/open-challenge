@@ -5,6 +5,13 @@ import { useState } from 'react';
 // import { ChallengeEditorPageStore } from './ChallengeEditor.store';
 // import { ChallengeEditorPageLogic } from './ChallengeEditor.logic';
 
+const emptyTestCode = `test.describe('', () => {
+    test.it('', () => {
+        const response = __challengeFunction();
+        test.expect(response).toBe(true);
+    });
+});`;
+
 export function useChallengeEditorPage() {
     // #region [ Local State ]
     const [selectedChallengeId, setSelectedChallengeId] =
@@ -14,7 +21,7 @@ export function useChallengeEditorPage() {
     const [sourceCode, setSourceCode] = useState('\n\n\n');
     const [codePreview, setCodePreview] = useState('');
     const [visibleCodePreview, setVisibleCodePreview] = useState('');
-    const [testsCode, setTestsCode] = useState('\n\n\n');
+    const [testsCode, setTestsCode] = useState(emptyTestCode);
     const [testsResults, setTestsResults] = useState<TestsResultsInterface>();
     const [error, setError] = useState<string>();
     const [challengesList, setChallengesList] = useState<Challenge[]>([]);
@@ -126,7 +133,7 @@ export function useChallengeEditorPage() {
         setTitle('');
         setDescription('');
         setSourceCode('\n\n\n');
-        setTestsCode('\n\n\n');
+        setTestsCode(emptyTestCode);
         setTestsResults(undefined);
         setError('');
     }
