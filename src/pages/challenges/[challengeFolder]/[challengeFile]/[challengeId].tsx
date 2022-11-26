@@ -107,7 +107,11 @@ export const getStaticPaths: GetStaticPaths = async (props) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     try {
-        const challengeId = context.params?.challengeId as string;
+        const challengeId = (context.params?.challengeId as string).replace(
+            /__.*/,
+            ''
+        );
+
         const challengeFilePath = path.join(
             'src/data/data-source/challenges',
             context.params?.challengeFolder as string,

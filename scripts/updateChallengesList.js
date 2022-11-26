@@ -38,6 +38,13 @@ async function getChallengesFiles() {
     return filesList;
 }
 
+function titleToURL(title) {
+    return title
+        .toLowerCase()
+        .replace(/[^\w ]+/g, '')
+        .replace(/ +/g, '-');
+}
+
 async function getChallengesPaths() {
     const challengesFiles = await getChallengesFiles();
     const challengesPaths = [];
@@ -45,7 +52,13 @@ async function getChallengesPaths() {
         const challengePath = challengeFile.filePath.replace('.json', '');
         for (const challenge of challengeFile.challenges) {
             challengesPaths.push(
-                path.join(challengePath, challenge.id).split('\\').join('/')
+                path
+                    .join(
+                        challengePath,
+                        `${challenge.id}__${titleToURL(challenge.title)}`
+                    )
+                    .split('\\')
+                    .join('/')
             );
         }
     }

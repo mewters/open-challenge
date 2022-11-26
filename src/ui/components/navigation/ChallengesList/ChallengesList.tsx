@@ -109,7 +109,13 @@ const ChallengesList: React.FC<ChallengesListProps> = ({
                                                     key={challenge.id}
                                                 >
                                                     <Link
-                                                        href={`/challenges${path}/${challengeDirectory.path}/${challenge.id}`}
+                                                        href={`/challenges${path}/${
+                                                            challengeDirectory.path
+                                                        }/${
+                                                            challenge.id
+                                                        }__${TextService.titleToURL(
+                                                            challenge.title
+                                                        )}`}
                                                         passHref
                                                     >
                                                         <ChallengeLink>
