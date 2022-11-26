@@ -94,8 +94,11 @@ export function useChallengeEditorPage() {
                     item.id === challengeId
                         ? {
                               ...item,
+                              title: title,
+                              description: description,
                               code: sourceCode,
                               testsCode: testsCode,
+                              answer: visibleCodePreview,
                           }
                         : item
                 )
