@@ -23,7 +23,7 @@ import Link from 'next/link';
 import React from 'react';
 
 // import { Component } from '@partials/challenges/Challenges.styled';
-import { useChallengesPage } from '@partials/challenges/Challenges.hook';
+import { useChallengesListPage } from '@partials/challenges-list/ChallengesList.hook';
 // import { ChallengesPageLogic } from '@partials/challenges/Challenges.logic';
 // import { ChallengesPageStore } from '@partials/challenges/Challenges.store';
 
@@ -32,14 +32,14 @@ interface ChallengesProps {
     challenges: ChallengeStructure[];
 }
 
-export default function Challenges(props: ChallengesProps) {
+export default function ChallengesListPage(props: ChallengesProps) {
     const {
         selectedChallengeDirectory,
         handleOpenDirectory,
         searchText,
         setSearchText,
         filteredChallenges,
-    } = useChallengesPage(props.challenges);
+    } = useChallengesListPage(props.challenges);
 
     return (
         <div>

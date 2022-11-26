@@ -2,7 +2,7 @@
 
 import { ChallengeStructure } from '@typing/ChallengeInterface';
 
-export class ChallengesPageLogic {
+export class ChallengesListPageLogic {
     static filterChallenges(
         challengesList: ChallengeStructure[],
         searchText: string

@@ -1,6 +1,6 @@
 import { createStore } from '@udecode/zustood';
 
-export const ChallengesPageStore = createStore('ChallengesPage')({
+export const ChallengesListPageStore = createStore('ChallengesListPage')({
     value: '',
 });
 //.extendSelectors((set, get, api) => ({

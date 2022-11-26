@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react';
 import { ChallengeStructure } from '@typing/ChallengeInterface';
 // import { ChallengesPageStore } from './Challenges.store';
-import { ChallengesPageLogic } from './Challenges.logic';
+import { ChallengesListPageLogic } from './ChallengesList.logic';
 
-export function useChallengesPage(challenges: ChallengeStructure[]) {
+export function useChallengesListPage(challenges: ChallengeStructure[]) {
     // #region [ Local State ]
     const [searchText, setSearchText] = useState('');
     const [selectedChallengeDirectory, setSelectedChallengeDirectory] =
@@ -12,7 +12,7 @@ export function useChallengesPage(challenges: ChallengeStructure[]) {
         // if (searchText === '') {
         //     return challenges;
         // }
-        // return ChallengesPageLogic.filterChallenges(challenges, searchText);
+        // return ChallengesListPageLogic.filterChallenges(challenges, searchText);
         return challenges;
     }, [challenges]);
     // }, [challenges, searchText]);
