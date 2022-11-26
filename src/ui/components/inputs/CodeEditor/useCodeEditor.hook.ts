@@ -1,11 +1,5 @@
 import { OnMount, OnChange, loader } from '@monaco-editor/react';
-import {
-    useCallback,
-    useEffect,
-    useLayoutEffect,
-    useRef,
-    useState,
-} from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { CodeEditorProps } from './CodeEditor';
 import type monaco from 'monaco-editor';
 
@@ -74,7 +68,7 @@ export const useCodeEditor = (props: CodeEditorProps) => {
     // #endregion
 
     // #region Effects
-    useLayoutEffect(() => {
+    useEffect(() => {
         updateEditorHeight();
     }, [updateEditorHeight]);
 
