@@ -58,13 +58,6 @@ export default function Challenges(props: ChallengesProps) {
                     <CircularProgress />
                 </Box>
             )}
-
-            <ChallengesList
-                challenges={props.challenges}
-                path=""
-                onOpenDirectory={handleOpenDirectory}
-                selectedDirectory={selectedChallengeDirectory}
-            />
         </div>
     );
 }
