@@ -174,11 +174,9 @@ export default function ChallengeEditor(props: ChallengeEditorProps) {
                 direction={'row'}
                 justifyContent={'end'}
             >
-                {selectedChallengeId && (
-                    <Button variant={'outlined'} onClick={resetAllFields}>
-                        Cancel
-                    </Button>
-                )}
+                <Button variant={'outlined'} onClick={resetAllFields}>
+                    {selectedChallengeId ? 'Cancel' : 'Reset'}
+                </Button>
                 <Button
                     variant={'contained'}
                     onClick={saveChallenge}
