@@ -123,9 +123,11 @@ export function useChallengeEditorPage() {
     }
 
     function removeChallenge(challengeId: string) {
-        setChallengesList((prev) =>
-            prev.filter((item) => item.id !== challengeId)
-        );
+        if (confirm('Do you want to delete this challenge?')) {
+            setChallengesList((prev) =>
+                prev.filter((item) => item.id !== challengeId)
+            );
+        }
     }
 
     function duplicateChallenge(challenge: Challenge) {
