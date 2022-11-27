@@ -48,6 +48,7 @@ export default function ChallengeEditor(props: ChallengeEditorProps) {
         selectChallenge,
         saveChallenge,
         removeChallenge,
+        duplicateChallenge,
         loadChallengesList,
         challengesListJSON,
         setChallengesListJSON,
@@ -195,14 +196,24 @@ export default function ChallengeEditor(props: ChallengeEditorProps) {
                     {challengesList.map((challenge) => (
                         <ListItem
                             key={challenge.id}
+                            sx={{ pr: 12 }}
                             secondaryAction={
-                                <IconButton
-                                    onClick={() =>
-                                        removeChallenge(challenge.id)
-                                    }
-                                >
-                                    <i className="fas fa-trash" />
-                                </IconButton>
+                                <>
+                                    <IconButton
+                                        onClick={() =>
+                                            duplicateChallenge(challenge)
+                                        }
+                                    >
+                                        <i className="fas fa-copy" />
+                                    </IconButton>
+                                    <IconButton
+                                        onClick={() =>
+                                            removeChallenge(challenge.id)
+                                        }
+                                    >
+                                        <i className="fas fa-trash" />
+                                    </IconButton>
+                                </>
                             }
                         >
                             <ListItemButton

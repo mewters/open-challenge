@@ -128,6 +128,11 @@ export function useChallengeEditorPage() {
         );
     }
 
+    function duplicateChallenge(challenge: Challenge) {
+        selectChallenge(challenge);
+        setSelectedChallengeId(null);
+    }
+
     function resetAllFields() {
         setSelectedChallengeId(null);
         setTitle('');
@@ -178,6 +183,7 @@ export function useChallengeEditorPage() {
         selectChallenge,
         saveChallenge,
         removeChallenge,
+        duplicateChallenge,
         loadChallengesList,
         challengesListJSON,
         setChallengesListJSON,
