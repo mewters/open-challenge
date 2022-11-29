@@ -3,7 +3,13 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { readFile } from 'fs/promises';
 import path from 'path';
 import CodeEditorRanges from '@components/inputs/CodeEditorRanges/CodeEditorRanges';
-import { Box, Button, CircularProgress, Typography } from '@mui/material';
+import {
+    Box,
+    Button,
+    CircularProgress,
+    Stack,
+    Typography,
+} from '@mui/material';
 import { ThemeStore } from '@stores/ThemeStore';
 import TestsResults from '@components/data-display/TestsResults/TestsResults';
 
@@ -11,13 +17,18 @@ import { Component } from '@partials/challenges/[challengeFolder]/[challengeFile
 import { useChallengeIdPage } from '@partials/challenges/[challengeFolder]/[challengeFile]/ChallengeId.hook';
 import { ChallengeIdPageLogic } from '@partials/challenges/[challengeFolder]/[challengeFile]/ChallengeId.logic';
 import { ChallengeIdPageStore } from '@partials/challenges/[challengeFolder]/[challengeFile]/ChallengeId.store';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export interface ChallengeProps {
     title: string;
     challenge: ChallengeInterface;
+    previousChallenge: ChallengeInterface | null;
+    nextChallenge: ChallengeInterface | null;
 }
 
 export default function ChallengeId(props: ChallengeProps) {
+    const router = useRouter();
     const {
         setChallengeCode,
         testsResults,
@@ -78,6 +89,48 @@ export default function ChallengeId(props: ChallengeProps) {
                 </Typography>
             )}
             {testsResults && <TestsResults {...testsResults} />}
+
+            <Stack
+                direction={'row'}
+                justifyContent={'space-between'}
+                sx={{ mt: 10 }}
+            >
+                {props.previousChallenge ? (
+                    <Link
+                        href={{
+                            pathname:
+                                '/challenges/[challengeFolder]/[challengeFile]/[challengeId]',
+                            query: {
+                                challengeFolder: router.query.challengeFolder,
+                                challengeFile: router.query.challengeFile,
+                                challengeId: props.previousChallenge?.id,
+                            },
+                        }}
+                    >
+                        <Button variant={'outlined'}>Previous</Button>
+                    </Link>
+                ) : (
+                    <span />
+                )}
+
+                {props.nextChallenge ? (
+                    <Link
+                        href={{
+                            pathname:
+                                '/challenges/[challengeFolder]/[challengeFile]/[challengeId]',
+                            query: {
+                                challengeFolder: router.query.challengeFolder,
+                                challengeFile: router.query.challengeFile,
+                                challengeId: props.nextChallenge?.id,
+                            },
+                        }}
+                    >
+                        <Button variant={'outlined'}>Next</Button>
+                    </Link>
+                ) : (
+                    <span />
+                )}
+            </Stack>
         </div>
     );
 }
@@ -122,19 +175,30 @@ export const getStaticProps: GetStaticProps = async (context) => {
             `${context.params?.challengeFile as string}.json`
         );
         const file = await readFile(challengeFilePath, 'utf8');
+        const challenges: ChallengeInterface[] = JSON.parse(file);
 
-        const challenge = JSON.parse(file).find(
+        const challengeIndex = challenges.findIndex(
             (challenge: ChallengeInterface) => challenge.id === challengeId
         );
 
-        if (!challenge) {
+        if (challengeIndex === -1) {
             throw new Error('Challenge not found');
         }
+
+        const challenge = challenges[challengeIndex];
+        const previousChallenge =
+            challengeIndex > 0 ? challenges[challengeIndex - 1] : null;
+        const nextChallenge =
+            challengeIndex < challenges.length - 1
+                ? challenges[challengeIndex + 1]
+                : null;
 
         return {
             props: {
                 title: `Challenge - ${challenge.title}`,
                 challenge,
+                previousChallenge,
+                nextChallenge,
             },
         };
     } catch (error) {
