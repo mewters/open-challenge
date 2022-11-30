@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TestsResultsInterface } from '@typing/TestsInterface';
 import { ChallengeProps } from 'pages/challenges/[challengeFolder]/[challengeFile]/[challengeId]';
 import { TestRunner } from '@services/Tests/TestsService';
@@ -38,7 +38,10 @@ export function useChallengeIdPage(props: ChallengeProps) {
     // #endregion
 
     // #region [ Effects ]
-
+    useEffect(() => {
+        setError('');
+        setTestsResults(undefined);
+    }, [props.challenge.id]);
     // #endregion
 
     return {
