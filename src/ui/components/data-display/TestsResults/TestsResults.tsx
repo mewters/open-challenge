@@ -63,6 +63,7 @@ const TestsResults: React.FC<TestsResultsProps> = ({
                                                     component={'span'}
                                                     sx={{
                                                         display: 'block',
+                                                        whiteSpace: 'pre-wrap',
                                                         color: expect.status
                                                             ? 'success.main'
                                                             : 'error.main',
