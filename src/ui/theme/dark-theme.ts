@@ -8,10 +8,10 @@ const theme = createTheme({
         mode: 'dark',
         primary: { main: '#65b2ff' },
         secondary: { main: '#f486c3' },
-        success: { main: '#50fa7b' },
+        success: { main: '#00b894' }, // teal
         error: { main: '#f948b4' },
-        warning: { main: '#f19b0b' },
-        info: { main: '#b0dde9' },
+        warning: { main: '#fdcb6e' }, // orange
+        info: { main: '#00cec9' }, // green-blue
         text: {
             primary: '#fff',
             secondary: '#bcc2cd',
