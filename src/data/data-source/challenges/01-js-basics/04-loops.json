@@ -1,0 +1,55 @@
+[
+    {
+        "id": "1669940101433",
+        "isDone": false,
+        "isCorrect": false,
+        "title": "For - Listing numbers",
+        "description": "In the code below we have a variable \"first\" and another \"last\" with a start number and an end number.\n\nRun \"console.log()\" to list all numbers between \"first\" and \"last\"",
+        "code": "[---hidden---\nfunction challenge(start, end){\nconst response = [];\nconst console = {\n    log(n){ response.push(n) }\n}\n---hidden---]\nlet first, last;\n[---hidden---first = start;last = end;---hidden---]\n[---editable---\n\n\n---editable---]\n[---hidden---\nreturn JSON.stringify(response);\n}\nreturn challenge;\n---hidden---]",
+        "testsCode": "test.describe('For - Listing numbers', () => {\n    function expectedResponse(first, last){\n        const response = [];\n        for(let i = first; i <= last; i++){\n            response.push(i);\n        }\n        return JSON.stringify(response);\n    }\n    let first = Math.floor(Math.random() * 5) + 1,\n        last = Math.floor(Math.random() * 5) + first + 2;\n    test.it(`List numbers between ${first} and ${last}`, () => {\n        const response = __challengeFunction(first, last);\n        test.expect(response).toBe(expectedResponse(first, last));\n    });\n    first = Math.floor(Math.random() * 10) + 1,\n        last = Math.floor(Math.random() * 10) + first + 8;\n    test.it(`List numbers between ${first} and ${last}`, () => {\n        const response = __challengeFunction(first, last);\n        test.expect(response).toBe(expectedResponse(first, last));\n    });\n});",
+        "answer": "let first, last;\nfor(let i = first; i <= last; i++){\n    console.log(i);\n}",
+        "chosen": false
+    },
+    {
+        "id": "1669940912248",
+        "isDone": false,
+        "isCorrect": false,
+        "title": "Loops - Countdown",
+        "description": "In this challenge you will receive a variable \"number\" with a random number.\n\nRun \"console.log\" from that number until it reaches zero.\n\nEx:\nlet number = 3;\nOutput:\n3, 2, 1, 0",
+        "code": "[---hidden---\nfunction challenge(n){\n    let response = '\\n';\n    const console = {\n        log(text){\n            response += `${text}\\n`;\n        }\n    }\n---hidden---]\nlet number;[---hidden---number = n;---hidden---]\n[---editable---\n\n---editable---]\n[---hidden---\n    return response;\n}\nreturn challenge;\n---hidden---]",
+        "testsCode": "test.describe('Loops - Countdown', () => {\n    let randomNumber = Math.floor(Math.random() * 5) + 2;\n    test.it(`Countdown starting from ${randomNumber}`, () => {\n        let expectedResponse = '\\n';\n        const testNumber = randomNumber;\n        do {\n            expectedResponse += `${randomNumber--}\\n`;\n        } while (randomNumber >= 0);\n        const response = __challengeFunction(testNumber);\n        test.expect(response).toBe(expectedResponse);\n    });\n    randomNumber = Math.floor(Math.random() * 5) + 7;\n    test.it(`Countdown starting from ${randomNumber}`, () => {\n        let expectedResponse = '\\n';\n        const testNumber = randomNumber;\n        do {\n            expectedResponse += `${randomNumber--}\\n`;\n        } while (randomNumber >= 0);\n        const response = __challengeFunction(testNumber);\n        test.expect(response).toBe(expectedResponse);\n    });\n});",
+        "answer": "let number;do{\n    console.log(number--);\n}while(number >= 0);\n",
+        "chosen": false
+    },
+    {
+        "id": "1669939130927",
+        "isDone": false,
+        "isCorrect": false,
+        "title": "Loops - Multiplication Table",
+        "description": "In the code below we have a variable \"number\" with a numeric value.\n\nUse a loop to run \"console.log\" to generate a multiplication table of that number.\n\nEx:\nnumber = 2;\n\noutput:\n2 x 1 = 2\n2 x 2 = 4\n...\n2 x 10 = 20",
+        "code": "[---hidden---\nfunction challenge(n){\n    let response = '\\n';\n    const console = {\n        log(text){\n            response += `${text}\\n`;\n        }\n    }\n---hidden---]\nlet number;[---hidden---number = n;---hidden---]\n[---editable---\n\n---editable---]\n[---hidden---\n    return response;\n}\nreturn challenge;\n---hidden---]",
+        "testsCode": "test.describe('Loops - Multiplication Table', () => {\n    let randomNumber = Math.floor(Math.random() * 10) + 1;\n    test.it(`Multiplication table of ${randomNumber}`, () => {\n        let expectedResponse = '\\n';\n        for(let i = 1; i <= 10; i++){\n            expectedResponse += `${randomNumber} x ${i} = ${randomNumber * i}\\n`;\n        }\n        const response = __challengeFunction(randomNumber);\n        test.expect(response).toBe(expectedResponse);\n    });\n    randomNumber = Math.floor(Math.random() * 10) + 1;\n    test.it(`Multiplication table of ${randomNumber}`, () => {\n        let expectedResponse = '\\n';\n        for(let i = 1; i <= 10; i++){\n            expectedResponse += `${randomNumber} x ${i} = ${randomNumber * i}\\n`;\n        }\n        const response = __challengeFunction(randomNumber);\n        test.expect(response).toBe(expectedResponse);\n    });\n});",
+        "answer": "let number;for(let i = 1; i <= 10; i++){\n    console.log(`${number} x ${i} = ${number * i}`);\n}"
+    },
+    {
+        "id": "1670063437977",
+        "isDone": false,
+        "isCorrect": false,
+        "title": "Loops - Repeat a char n times",
+        "description": "In this challenge you will receive a number, n, and a string, str. \n\nYou should run a loop n times and concatenate the string to the \"result\" variable each time. \n\nFor example, if n is 3 and str is \"a\", the result string should be \"aaa\". \nIf n is 5 and str is \"b\", the result string should be \"bbbbb\".",
+        "code": "[---hidden---\nfunction challenge(number, string){\n---hidden---]\nlet n, str;[---hidden---n = number;str = string;---hidden---]let result = '';\n[---editable---\n\n---editable---]\n[---hidden---\n return result;\n}\nreturn challenge;\n---hidden---]",
+        "testsCode": "test.describe('Loops in depth', () => {\n    const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];\n    let randomNumber = Math.floor(Math.random() * 10) + 3;\n    let randomString = letters[Math.floor(Math.random() * letters.length)];;\n    test.it(`Loop ${randomNumber} times, concatenating string \"${randomString}\"`, () => {\n        const response = __challengeFunction(randomNumber, randomString);\n        test.expect(response).toBe(randomString.repeat(randomNumber));\n    });\n    randomNumber = Math.floor(Math.random() * 10) + 3;\n    randomString = letters[Math.floor(Math.random() * letters.length)];;\n    test.it(`Loop ${randomNumber} times, concatenating string \"${randomString}\"`, () => {\n        const response = __challengeFunction(randomNumber, randomString);\n        test.expect(response).toBe(randomString.repeat(randomNumber));\n    });\n})",
+        "answer": "let n, str;let result = '';\nresult = str.repeat(n)\n",
+        "chosen": false
+    },
+    {
+        "id": "1670064248797",
+        "isDone": false,
+        "isCorrect": false,
+        "title": "Loops - Sum of all numbers between A and B",
+        "description": "In the code bellow you have two numeric variables, \"a\" and \"b\".\n\nWrite a loop that calculates the sum of all the numbers from \"a\" to \"b\" and save it to the \"result\" variable.\n\nExample:\na = 1, b = 3;\noutput:\nresult === 6\nbecause 1 + 2 + 3 is 6",
+        "code": "[---hidden---\nfunction challenge(first, last){\n---hidden---]\nlet a, b;[---hidden---a=first;b=last;---hidden---]\nlet result = 0;\n[---editable---\n\n---editable---]\n[---hidden---\nreturn result;\n}\nreturn challenge;---hidden---]\n\n",
+        "testsCode": "test.describe('Loops - Sum of all numbers between A and B', () => {\n    let first = Math.floor(Math.random() * 10) + 3;\n    let last = Math.floor(Math.random() * 10) + 3 + first;\n    let result = 0;\n    for (let i = first; i <= last; i++) {\n        result += i;\n    }\n    test.it(`Sum of all numbers between ${first} and ${last} must be ${result}`, () => {\n        const response = __challengeFunction(first, last);\n        test.expect(response).toBe(result);\n    });\n    first = Math.floor(Math.random() * 10) + 3;\n    last = Math.floor(Math.random() * 10) + 3 + first;\n    result = 0;\n    for (let i = first; i <= last; i++) {\n        result += i;\n    }\n    test.it(`Sum of all numbers between ${first} and ${last} must be ${result}`, () => {\n        const response = __challengeFunction(first, last);\n        test.expect(response).toBe(result);\n    });\n});",
+        "answer": "let a, b;let result = 0;\nfor (let i = a; i <= b; i++) {\n    result += i;\n}\n"
+    }
+]
