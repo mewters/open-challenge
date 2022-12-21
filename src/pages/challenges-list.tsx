@@ -54,13 +54,13 @@ export default function ChallengesListPage(props: ChallengesProps) {
 
             {props.challenges.length > 0 ? (
                 <>
-                    <TextField
+                    {/* <TextField
                         label={'Search'}
                         sx={{ mb: 2 }}
                         fullWidth
                         value={searchText}
                         onChange={(e) => setSearchText(e.target.value)}
-                    />
+                    /> */}
                     <ChallengesList
                         challenges={filteredChallenges}
                         path=""
