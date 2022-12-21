@@ -1,0 +1,22 @@
+[
+    {
+        "id": "1670795728695",
+        "isDone": false,
+        "isCorrect": false,
+        "title": "Function Declaration",
+        "description": "Declare a function called \"hello\" that returns the string \"Hello World!\"",
+        "code": "[---editable---\n\n\n---editable---]\n[---hidden---return hello;---hidden---]\n",
+        "testsCode": "test.describe('Function Declaration', () => {\n    test.it('Function must return \"Hello World!\" string', () => {\n        const response = __challengeFunction();\n        test.expect(response).toBe(\"Hello World!\");\n    });\n});",
+        "answer": "function hello(){\n    return \"Hello World!\"\n}"
+    },
+    {
+        "id": "1670796252338",
+        "isDone": false,
+        "isCorrect": false,
+        "title": "Function Params",
+        "description": "Declare a function called \"sum\" that takes two numeric variables and returns their sum.",
+        "code": "[---editable---\n\n\n---editable---]\n[---hidden--- return sum;---hidden---]",
+        "testsCode": "test.describe('Function Params', () => {\n    let a = Math.floor(Math.random() * 10) + 1;\n    let b = Math.floor(Math.random() * 10) + 1;\n    test.it(`${a} + ${b} = ${a+b}`, () => {\n        const response = __challengeFunction(a, b);\n        test.expect(response).toBe(a + b);\n    });\n    a = Math.floor(Math.random() * 10) + 1;\n    b = Math.floor(Math.random() * 10) + 1;\n    test.it(`${a} + ${b} = ${a+b}`, () => {\n        const response = __challengeFunction(a, b);\n        test.expect(response).toBe(a + b);\n    });\n});",
+        "answer": "function sum(a, b){\n    return a + b;\n}"
+    }
+]
