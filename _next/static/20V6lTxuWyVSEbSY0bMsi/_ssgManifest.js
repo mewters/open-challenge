@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fchallenge-editor","\u002Fchallenges-list","\u002Fchallenges\u002F[challengeFolder]\u002F[challengeFile]\u002F[challengeId]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
